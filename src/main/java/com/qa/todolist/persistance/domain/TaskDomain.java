@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 
 
@@ -24,7 +25,7 @@ public class TaskDomain {
 	
 	private String date;
 	
-	
+	@Size(min = 1, max = 140)
 	private String notes;
 	
 	
