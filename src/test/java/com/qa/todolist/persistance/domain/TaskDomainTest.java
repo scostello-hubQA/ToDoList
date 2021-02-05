@@ -8,12 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class TaskDomainTest {
 	
 	private TaskDomain task;
-	private TaskDomain other;
+
 	
 	@Test
 	public void setterGetterTest() {
 		task = new TaskDomain(1L, "Hoover", 2, "01-01-01", "Hoover downstairs", false, null);
-		other = new TaskDomain(1L, "Hoover", 2, "01-01-01", "Hoover downstairs", false, null); 
 		
 		
 		Assertions.assertThat(task).isNotNull();
