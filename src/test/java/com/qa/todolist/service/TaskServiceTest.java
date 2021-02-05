@@ -1,5 +1,6 @@
 package com.qa.todolist.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
@@ -10,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+
 
 import com.qa.todolist.persistance.domain.TaskDomain;
 import com.qa.todolist.persistance.dtos.TaskDTO;
@@ -70,6 +72,30 @@ public class TaskServiceTest {
 		
 		Mockito.verify(this.mockedRepo, Mockito.times(1)).findById(1L);
 		}
+	
+	@Test
+	public void readAll() {
+		Long id = 1L;
+		TaskDomain testTask = new TaskDomain(1l, "Hoovering", 2, "22-01-2020", "kitchen hoover", false, null);
+		
+		
+		testTask.setTaskId(id);
+		
+		List<TaskDomain>tasks = this.mockedRepo.findAll();
+		TaskDTO resultList = this.mockedMapper.map(tasks, TaskDTO.class);
+		
+		Mockito.when(this.mockedRepo.findAll()).thenReturn(tasks);
+		Mockito.when(this.mockedMapper.map(tasks, TaskDTO.class)).thenReturn(resultList);
+		
+
+		
+		Assertions.assertThat(tasks).isNotNull();
+		Assertions.assertThat(this.service.readAll()).isEqualTo(tasks);
+		
+		Mockito.verify(this.mockedRepo, Mockito.times(2)).findAll();
+		
+
+	}
 	
 
 }
