@@ -45,5 +45,16 @@ public class TaskServiceTest {
 		Mockito.verify(this.mockedMapper, Mockito.times(1)).map(testTask, TaskDTO.class);
 	}
 	
+	@Test
+	public void delete() {
+		Long id = 1l;
+		
+		Mockito.when(this.mockedRepo.existsById(id)).thenReturn(false);
+		
+		Assertions.assertThat(this.service.deleteTask(id)).isTrue();
+		
+		Mockito.verify(this.mockedRepo, Mockito.times(1)).existsById(id);
+	}
+	
 
 }
