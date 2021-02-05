@@ -1,5 +1,6 @@
 package com.qa.todolist.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
@@ -72,6 +73,39 @@ public class ToDoServiceTest {
 		Mockito.verify(this.mockedRepo, Mockito.times(1)).findById(1L);
 		}
 	
+	@Test
+	public void readAll() {
+		Long id = 1L;
+		ToDoDomain testToDo = new ToDoDomain(1L, "Cleaning", null);
+		
+		testToDo.setId(id);
+		
+		List<ToDoDomain>todos = this.mockedRepo.findAll();
+		ToDoDTO resultList = this.mockedMapper.map(todos, ToDoDTO.class);
+		
+		Mockito.when(this.mockedRepo.findAll()).thenReturn(todos);
+		Mockito.when(this.mockedMapper.map(todos, ToDoDTO.class)).thenReturn(resultList);
+		
+		Assertions.assertThat(todos).isNotNull();
+		Assertions.assertThat(this.service.readAll()).isEqualTo(todos);
+		
+		Mockito.verify(this.mockedRepo, Mockito.times(2)).findAll();
+	}
+	
+	@Test
+	public void update() {
+		ToDoDomain testToDo = new ToDoDomain(1L, "Cleaning", null);
+		ToDoDomain newToDo = new ToDoDomain(1L, "Cleaning", null);
+		ToDoDTO testDTO = new ToDoDTO(1L, newToDo.getName(), null);
+		
+		Mockito.when(this.mockedRepo.findById(1L)).thenReturn(Optional.of(testToDo));
+		Mockito.when(this.mockedRepo.save(newToDo)).thenReturn(newToDo);
+		Mockito.when(this.mockedMapper.map(newToDo, ToDoDTO.class)).thenReturn(testDTO);
+		
+		ToDoDTO result = this.service.updateToDo(1L, newToDo);
+		
+		Assertions.assertThat(result).usingRecursiveComparison().isEqualTo(testDTO);
+	}
 	
 	
 
