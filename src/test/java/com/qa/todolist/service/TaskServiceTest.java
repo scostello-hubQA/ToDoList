@@ -1,5 +1,7 @@
 package com.qa.todolist.service;
 
+import java.util.Optional;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -55,6 +57,19 @@ public class TaskServiceTest {
 		
 		Mockito.verify(this.mockedRepo, Mockito.times(1)).existsById(id);
 	}
+	
+	@Test
+	public void readById() {
+		TaskDomain testTask = new TaskDomain(1l, "Hoovering", 2, "22-01-2020", "kitchen hoover", false, null);
+		TaskDTO testDTO = this.mockedMapper.map(testTask, TaskDTO.class);
+		
+		Mockito.when(this.mockedRepo.findById(testTask.getTaskId())).thenReturn(Optional.of(testTask));
+		TaskDTO result = this.service.readById(1L);
+		
+		Assertions.assertThat(result).usingRecursiveComparison().isEqualTo(testDTO);
+		
+		Mockito.verify(this.mockedRepo, Mockito.times(1)).findById(1L);
+		}
 	
 
 }
