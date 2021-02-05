@@ -1,6 +1,6 @@
 package com.qa.todolist.persistance.domain;
 
-import java.sql.Date;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
