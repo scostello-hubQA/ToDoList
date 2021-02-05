@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
 
@@ -32,6 +33,9 @@ public class TaskDomain {
 	
 	
 	private boolean completed;
+	
+	@ManyToOne
+	private ToDoDomain toDo;
 
 
 	public TaskDomain() {
@@ -39,7 +43,11 @@ public class TaskDomain {
 	}
 
 
-	public TaskDomain(Long taskId, String act, int priority, String date, String notes, boolean completed) {
+
+
+
+	public TaskDomain(Long taskId, String act, int priority, String date, @Size(min = 1, max = 140) String notes,
+			boolean completed, ToDoDomain toDo) {
 		super();
 		this.taskId = taskId;
 		this.act = act;
@@ -47,7 +55,11 @@ public class TaskDomain {
 		this.date = date;
 		this.notes = notes;
 		this.completed = completed;
+		this.toDo = toDo;
 	}
+
+
+
 
 
 	public Long getTaskId() {
@@ -108,6 +120,24 @@ public class TaskDomain {
 	public void setCompleted(boolean completed) {
 		this.completed = completed;
 	}
+
+
+
+
+
+	public ToDoDomain getToDo() {
+		return toDo;
+	}
+
+
+
+
+
+	public void setToDo(ToDoDomain toDo) {
+		this.toDo = toDo;
+	}
+	
+	
 	
 	
 

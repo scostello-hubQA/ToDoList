@@ -2,10 +2,17 @@ package com.qa.todolist.persistance.domain;
 
 
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 public class ToDoDomain {
@@ -17,6 +24,10 @@ public class ToDoDomain {
 	
 	private String name;
 	
+	@OneToMany(mappedBy = "toDo", fetch = FetchType.EAGER)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private List<TaskDomain> taskList;
+	
 	
 	public ToDoDomain() {
 		super();
@@ -24,11 +35,16 @@ public class ToDoDomain {
 	}
 
 
-	public ToDoDomain(Long id, String name) {
+
+
+	public ToDoDomain(Long id, String name, List<TaskDomain> taskList) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.taskList = taskList;
 	}
+
+
 
 
 	public Long getId() {
@@ -49,6 +65,22 @@ public class ToDoDomain {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+
+
+
+	public List<TaskDomain> getTaskList() {
+		return taskList;
+	}
+
+
+
+
+	public void setTaskList(List<TaskDomain> taskList) {
+		this.taskList = taskList;
+	}
+	
+	
 	
 	
 	
