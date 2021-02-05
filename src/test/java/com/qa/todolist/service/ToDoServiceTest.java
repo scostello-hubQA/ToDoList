@@ -1,5 +1,7 @@
 package com.qa.todolist.service;
 
+import java.util.Optional;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -8,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-
+import com.qa.todolist.persistance.domain.TaskDomain;
 import com.qa.todolist.persistance.domain.ToDoDomain;
-
+import com.qa.todolist.persistance.dtos.TaskDTO;
 import com.qa.todolist.persistance.dtos.ToDoDTO;
 import com.qa.todolist.persistance.repos.ToDoRepo;
 
@@ -56,6 +58,19 @@ public class ToDoServiceTest {
 		
 		Mockito.verify(this.mockedRepo, Mockito.times(1)).existsById(id);
 	}
+	
+	@Test
+	public void readById() {
+		ToDoDomain testToDo = new ToDoDomain(1L, "Cleaning", null);
+		ToDoDTO testDTO = this.mockedMapper.map(testToDo, ToDoDTO.class);
+		
+		Mockito.when(this.mockedRepo.findById(testToDo.getId())).thenReturn(Optional.of(testToDo));
+		ToDoDTO result = this.service.readById(1L);
+		
+		Assertions.assertThat(result).usingRecursiveComparison().isEqualTo(testDTO);
+		
+		Mockito.verify(this.mockedRepo, Mockito.times(1)).findById(1L);
+		}
 	
 	
 	
