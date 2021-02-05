@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,6 +94,21 @@ public class TaskServiceTest {
 		Mockito.verify(this.mockedRepo, Mockito.times(2)).findAll();
 		
 
+	}
+	
+	@Test
+	public void update() {
+		TaskDomain testTask = new TaskDomain(1l, "Hoovering", 2, "22-01-2020", "kitchen hoover", false, null);
+		TaskDomain newTask = new TaskDomain(1l, "Hoovering", 2, "22-01-2020", "kitchen hoover", false, null);
+		TaskDTO testDTO = new TaskDTO(1L, newTask.getAct(), newTask.getPriority(), newTask.getDate(), newTask.getNotes(), false);
+		
+		Mockito.when(this.mockedRepo.findById(1L)).thenReturn(Optional.of(testTask));
+		Mockito.when(this.mockedRepo.save(newTask)).thenReturn(newTask);
+		Mockito.when(this.mockedMapper.map(newTask, TaskDTO.class)).thenReturn(testDTO);
+		
+		TaskDTO result = this.service.updateTask(1L, newTask);
+		
+		Assertions.assertThat(result).usingRecursiveComparison().isEqualTo(testDTO);
 	}
 	
 
