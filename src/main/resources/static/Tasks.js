@@ -14,7 +14,7 @@ const createTask = () => {
     const dateValue = date1.value;
     const notesValue = notes1.value;
     const completedValue = completed1.value;
-    const toDoValue = toDo1.value;
+ //   const toDoValue = toDo1.value;
 
 
 
@@ -25,9 +25,9 @@ const createTask = () => {
         "date": dateValue,
         "notes": notesValue,
         "completed": completedValue,
-        "toDO": {
-            "id": toDoValue
-        }
+  //      "toDO": {
+    //        "id": toDoValue
+      //  }
     }
 
 
@@ -65,7 +65,7 @@ const taskRead = () => {
                 console.log(`response is okay (200)`);
                 response.json().then((infofromserver) => {
                     console.log(infofromserver);
-                    console.log(infofromserver.data);
+               //     console.log(infofromserver.data);
                 })
             }
         }).catch((err) => {
@@ -81,9 +81,9 @@ const deleteTask = () => {
         "taskId": taskDeleteId
     }
 
-    fetch('http://localhost:8080/task/delete/${taskDeleteId}', {
+    fetch(`http://localhost:8080/task/delete/${taskDeleteId}`, {
         method: "DELETE",
-    }).then(response => console.log(`Task with ID {taskDeleteId} deleted`)
-    ).catch(err => console.error(`Stop!! ${err}`));
+    }).then(response => console.log(`task with id ${taskDeleteId} deleted`))
+    .catch(err => console.error(`Stop!! ${err}`));
 
 }
