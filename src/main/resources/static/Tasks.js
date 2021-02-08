@@ -4,7 +4,7 @@ const priority1 = document.querySelector('#priority');
 const date1 = document.querySelector('#date');
 const notes1 = document.querySelector('#notes');
 const completed1 = document.querySelector('#bool');
-const toDo1 = document.querySelector('#createToDoTask');
+const toDo1 = document.querySelector('#addToDoTask');
 const taskDeleteId1 = document.querySelector('#taskDeleteId')
 
 
@@ -14,7 +14,7 @@ const createTask = () => {
     const dateValue = date1.value;
     const notesValue = notes1.value;
     const completedValue = completed1.value;
- //   const toDoValue = toDo1.value;
+    const toDoValue = toDo1.value;
 
 
 
@@ -25,9 +25,9 @@ const createTask = () => {
         "date": dateValue,
         "notes": notesValue,
         "completed": completedValue,
-  //      "toDO": {
-    //        "id": toDoValue
-      //  }
+        "toDo": {
+            "id": toDoValue
+        }
     }
 
 
