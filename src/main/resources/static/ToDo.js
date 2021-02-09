@@ -1,6 +1,7 @@
 'use strict';
 
 const toDoCreate = document.querySelector('#toDoTitle');
+const deleteToDo1 = document.querySelector('#toDoDeleteId')
 
 
 const createToDo = () => {
@@ -39,4 +40,18 @@ const toDoReadAll =() => {
 		}).catch((err) => {
 			console.error(err);
 		})
+}
+
+const deleteToDo =() => {
+	const toDoDelete = deleteToDo1.value
+	
+	let data = {
+		"id":toDoDelete
+		
+	}
+	fetch(`http://localhost:8080/todo/delete/${toDoDelete}`,{
+		
+			method: "DELETE",
+	}).then(response => console.log(`to do with id ${toDoDelete} deleted`))
+		.catch(err => console.error(`Stop!! ${err}`));
 }

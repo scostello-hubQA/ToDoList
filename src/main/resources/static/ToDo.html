@@ -77,6 +77,34 @@
      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#readbutton">Read</button>
      <button type="button" class="btn btn-primary" id="readAllButton" onclick="toDoReadAll();">Read All</button>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deletebutton">Delete</button>
+    <div class="modal" id="deletebutton">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Delete To Do</h2>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>X</span>
+                    </button>
+
+                </div>
+                <div class="modal-body">
+                    <form action="" method="">
+                        <input type="text" id="toDoDeleteId" placeholder="ID of the ToDo you wish to delete"
+                            class="form-control">
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="deleteToDo();">Submit</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
     
     
     
