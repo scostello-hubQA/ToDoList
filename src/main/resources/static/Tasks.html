@@ -94,7 +94,7 @@
 
     </div>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updatebutton">Update</button>
+       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updatebutton">Update</button>
 
 
     <div class="modal" id="updatebutton">
@@ -109,31 +109,37 @@
                 </div>
                 <div class="modal-body">
                     <form action="" method="">
-                        <input type="text" placeholder="ID of the task you wish to update" class="form-control">
+                        <input type="text" placeholder="ID of the task you wish to update" class="form-control"
+                            id="updateId">
                         <hr>
-                        <input type="text" placeholder="Task Title" class="form-control">
+                        <input type="text" placeholder="Task Title" class="form-control" id="updateTask">
                         <hr>
-                        <input type="number" placeholder="Priority" min="1" max="5" class="form-control">
+                        <input type="number" placeholder="Priority" min="1" max="5" class="form-control" id="updatePriority">
                         <hr>
-                        <input type="date" class="form-control">
+                        <input type="date" class="form-control" id="updateDate">
                         <hr>
                         <input type="text" placeholder="Additional info max 140char" minlength="0" maxlength="140"
-                            class="form-control">
+                            class="form-control" id="updateAddInfo">
                         <hr>
-                        <p>is the task completed?</p>
+                        <div id="updatebool">
+                            <p>is the task completed?</p>
 
-                        <input type="radio" id="TaskCompletion1" name="TaskCompletion">
-                        <label for="TaskCompletion1">True</label>
+                            <input type="radio" id="TaskCompletion1" name="TaskCompletion">
+                            <label for="TaskCompletion1">True</label>
 
-                        <input type="radio" id="TaskNotCompleted" name="TaskCompletion">
-                        <label for="TaskNotCompleted">False</label>
+                            <input type="radio" id="TaskNotCompleted" name="TaskCompletion">
+                            <label for="TaskNotCompleted">False</label>
+                        </div>
+                        <hr>
+                        <input type="number" placeholder="ID of ToDo you want to link" class="form-control"
+                            id="updateToDoTask">
 
 
                     </form>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="updateTask()">Submit</button>
 
                 </div>
 

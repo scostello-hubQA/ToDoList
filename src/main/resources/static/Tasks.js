@@ -5,7 +5,14 @@ const date1 = document.querySelector('#date');
 const notes1 = document.querySelector('#notes');
 const completed1 = document.querySelector('#bool');
 const toDo1 = document.querySelector('#addToDoTask');
-const taskDeleteId1 = document.querySelector('#taskDeleteId')
+const taskDeleteId1 = document.querySelector('#taskDeleteId');
+const updateId1 = document.querySelector('#updateId');
+const updateTask1 = document.querySelector('#updateTask');
+const updatePriority1 = document.querySelector('#updatePriority');
+const updateDate1 = document.querySelector('#updateDate');
+const updateAddInfo1 = document.querySelector('#updateAddInfo');
+const updateTaskCompletion1 = document.querySelector('#updatebool');
+//const updateToDoTask1 = document.querySelector('#updateToDoTask');
 
 
 const createTask = () => {
@@ -89,3 +96,40 @@ const deleteTask = () => {
 		.catch(err => console.error(`Stop!! ${err}`));
 
 }
+
+
+const updateTask = () => {
+
+const actIdValue = updateId1.value;
+	const actValue = updateTask1.value;
+	const priorityValue = updatePriority1.value;
+	const dateValue = updateDate1.value;
+	const notesValue = updateAddInfo1.value;
+	const completedValue = updateTaskCompletion1.value;
+	const updatedToDoValue = updateToDoTask1;
+	
+	let data = {
+		"taskId" : actIdValue,
+		"act" : actValue,
+		"priority" : priorityValue,
+		"date" : dateValue,
+		"notes" : notesValue,
+		"completed" : completedValue ? false : true,
+		"toDo": {
+			"id": updatedToDoValue
+		}
+	}
+	
+	fetch(`http://localhost:8080/task/update/${actIdValue}`, {
+		method : "PUT",
+		body : JSON.stringify(data),
+		headers :{
+			"Content-Type":"application/json"
+		}
+	}).then(response => response.json())
+	.then(info => console.log(info))
+	.catch(err => console.error(`something went wrong ${err}`));
+
+}
+
+
