@@ -5,7 +5,12 @@ const deleteToDo1 = document.querySelector('#toDoDeleteId');
 const peeps = document.querySelector('#peeps');
 
 
-
+const printToDoToScreen = (todolist) => {
+	let user = document.createElement("p");
+	let text = document.createTextNode(`${todolist}`);
+	user.appendChild(text);
+	peeps.appendChild(user);
+}
 
 
 
@@ -40,8 +45,12 @@ const toDoReadAll = () => {
 				console.log(response);
 				console.log(`response is okay (200)`);
 				response.json().then((infofromserver) => {
-
-					console.log(infofromserver)
+					console.log(infofromserver);
+					console.log(infofromserver.data);
+					for(let todos of infofromserver.data){
+						printToDoToScreen(todos.name);
+						printToDoToScreen(todos.id);
+					}
 
 				})
 			}
@@ -63,3 +72,8 @@ const deleteToDo = () => {
 	}).then(response => console.log(`to do with id ${toDoDelete} deleted`))
 		.catch(err => console.error(`Stop!! ${err}`));
 }
+
+
+//cosnt readById = () => {
+
+//}
