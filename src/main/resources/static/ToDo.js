@@ -2,14 +2,14 @@
 
 const toDoCreate = document.querySelector('#toDoTitle');
 const deleteToDo1 = document.querySelector('#toDoDeleteId');
-const peeps = document.querySelector('#peeps');
+const readAllPrint = document.querySelector('#readAllToDo');
 
 
 const printToDoToScreen = (todolist) => {
 	let user = document.createElement("p");
 	let text = document.createTextNode(`${todolist}`);
 	user.appendChild(text);
-	peeps.appendChild(user);
+	readAllPrint.appendChild(user);
 }
 
 
@@ -47,9 +47,12 @@ const toDoReadAll = () => {
 				response.json().then((infofromserver) => {
 					console.log(infofromserver);
 					console.log(infofromserver.data);
-					for(let todos of infofromserver.data){
-						printToDoToScreen(todos.name);
-						printToDoToScreen(todos.id);
+					for(let todo of infofromserver){
+						printToDoToScreen(todo.name);
+						printToDoToScreen(todo.id);
+						let myJSON = JSON.stringify(todo.taskList);
+						printToDoToScreen(myJSON);
+						
 					}
 
 				})
