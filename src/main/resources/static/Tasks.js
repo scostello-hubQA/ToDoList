@@ -195,7 +195,7 @@ const updateTask = () => {
 	const dateValue = updateDate1.value;
 	const notesValue = updateAddInfo1.value;
 	const completedValue = updateTaskCompletion1.value;
-	const updatedToDoValue = updateToDoTask1;
+	const updatedToDoValue = updateToDoTask1.value;
 
 	let data = {
 		
@@ -207,6 +207,8 @@ const updateTask = () => {
 		"toDo": {"id": updatedToDoValue
 		}
 	}
+	
+	console.log()
 	
 console.log(data);
 console.log(JSON.stringify(data));
