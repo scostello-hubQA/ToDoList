@@ -8,6 +8,18 @@ const todoUpdateName = document.querySelector('#updatedname');
 const todoUpdateId = document.querySelector('#UpdateId');
 
 
+
+const jsonToString = (todo) => {
+	let id = todo.id;
+	let act = todo.name;
+	let myJSON = JSON.stringify(todo.taskList);
+	let priority = myJSON.priority;
+	
+	
+	let statement = `ID = ${id}, task = ${act}, priority = ${priority}`;
+	printToDoToScreen(statement);
+}
+
 const printToDoToScreen = (todolist) => {
 	let user = document.createElement("p");
 	let text = document.createTextNode(`${todolist}`);
@@ -60,8 +72,11 @@ const toDoReadAll = () => {
 					for(let todo of infofromserver){
 						printToDoToScreen(todo.name);
 						printToDoToScreen(todo.id);
+						console.table(todo);
 						let myJSON = JSON.stringify(todo.taskList);
 						printToDoToScreen(myJSON);
+						console.log(myJSON);
+						jsonToString(todo);
 						
 					}
 
