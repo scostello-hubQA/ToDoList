@@ -15,6 +15,7 @@ const updateTaskCompletion1 = document.querySelector('#updatebool');
 const updateToDoTask1 = document.querySelector('#updateToDoTask');
 const taskprint = document.querySelector('#printToScreenTask');
 const printDelete = document.querySelector('#confirmationOfDelete');
+const confirmCreate = document.querySelector('#createConfirmed');
 
 
 const printTaskToScreen = (task) => {
@@ -37,6 +38,15 @@ const deleteFailed = (notDeleted) => {
 	let text = document.createTextNode(`your task with id ${notDeleted} was not deleted`);
 	user.appendChild(text);
 	printDelete.appendChild(user);
+}
+
+const printCreateCon = (created) => {
+	let user = document.createElement("p");
+	let text = document.createTextNode(`${created}`);
+	user.appendChild(text);
+	confirmCreate.appendChild(user);
+	
+	
 }
 
 
@@ -72,11 +82,26 @@ const createTask = () => {
 		headers: {
 			"Content-Type": "application/json"
 		}
-	}).then(response => response.json())
-		.then(info => console.log(info))
-		.catch(err => console.error('something went wrong! ${err}'));
-		
-
+	}).then((response) => {
+			if (response.status != 201) {
+				throw new Error(`i dont have a status of 201`);
+			} else {
+				console.log(response);
+				console.log(`response is okay (201)`);
+				printCreateCon(`your task ${actValue} was created, use read all to find the id` );
+				
+					
+				
+						
+						//let myJSON = JSON.stringify(tasks.taskList);
+						//printTaskToScreen(myJSON);
+					
+					
+				}
+			}
+		).catch((err) => {
+			console.error(err);
+		})
 }
 
 
@@ -157,7 +182,7 @@ const deleteTask = () => {
 
 
 
-
+//still doesnt work
 const updateTask = () => {
 
 	const actIdValue = updateId1.value;
