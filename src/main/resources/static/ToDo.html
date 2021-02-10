@@ -75,6 +75,40 @@
      
      
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updatebutton">Update</button>
+      
+        <div class="modal" id="updatebutton">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Update To Do</h2>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>X</span>
+                    </button>
+
+                </div>
+                <div class="modal-body">
+                    <form action="" method="">
+                        <input type="text" id="UpdateId" placeholder="ID of the ToDo you wish to Update"
+                            class="form-control">
+                            <hr>
+                            <input type = "text" id="updatedname" class="form-control" placeholder="enter the updated name for your to do">
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="updateToDo();">Submit</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+      
+      
      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#readbutton">Read</button>
      <button type="button" class="btn btn-primary" id="readAllButton" onclick="toDoReadAll();">Read All</button>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deletebutton">Delete</button>
@@ -111,6 +145,17 @@
     <h3>Read All To DO</h3>
     </div>
     
+     <div id = "createConfirm">
+    <h3>Creation Confirmation</h3>
+    </div>
+    
+     <div id = "updateConfirm">
+    <h3>Update Confirmation</h3>
+    </div>
+    
+     <div id = "DeleteToDo">
+    <h3>Delete Confirmation</h3>
+    </div>
     
     
     

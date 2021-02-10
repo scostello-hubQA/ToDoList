@@ -3,6 +3,9 @@
 const toDoCreate = document.querySelector('#toDoTitle');
 const deleteToDo1 = document.querySelector('#toDoDeleteId');
 const readAllPrint = document.querySelector('#readAllToDo');
+const deleteToDoById = document.querySelector('#DeleteToDo');
+const todoUpdateName = document.querySelector('#updatedname');
+const todoUpdateId = document.querySelector('#UpdateId');
 
 
 const printToDoToScreen = (todolist) => {
@@ -10,6 +13,13 @@ const printToDoToScreen = (todolist) => {
 	let text = document.createTextNode(`${todolist}`);
 	user.appendChild(text);
 	readAllPrint.appendChild(user);
+}
+
+const printDeleteToScreen = (deleted)=>{
+	let user = document.createElement("p");
+	let text = document.createTextNode(`${deleted}`);
+	user.appendChild(text);
+	deleteToDoById.appendChild(user);
 }
 
 
@@ -72,11 +82,44 @@ const deleteToDo = () => {
 	fetch(`http://localhost:8080/todo/delete/${toDoDelete}`, {
 
 		method: "DELETE",
-	}).then(response => console.log(`to do with id ${toDoDelete} deleted`))
-		.catch(err => console.error(`Stop!! ${err}`));
+	}).then((response) => {
+			if (response.status != 204) {
+				throw new Error(`i dont have a status of 204`);
+			} else {
+				console.log(response);
+				console.log(`response is okay (204)`);
+				printDeleteToScreen(`your to do with id ${toDoDelete} was deleted `);
+					
+				}
+			}
+		).catch((err) => {
+			console.error(err);
+		})
 }
 
 
 //cosnt readById = () => {
 
 //}
+
+
+const updateToDo = () =>{
+	
+	const updateId =  todoUpdateId.value;
+	const updateName = todoUpdateName.value;
+	
+	let data = {
+		"name":updateName
+		
+	}
+	fetch(`http://localhost:8080/todo/update/${updateId}`,{
+		method:"PUT",
+
+		body: JSON.stringify(data),
+		headers: {
+			"Content-Type": "application/json"
+		}
+	}).then(response => response.json())
+		.then(info => console.log(info))
+		.catch(err => console.error(`something went wrong! ${err}`));
+}
