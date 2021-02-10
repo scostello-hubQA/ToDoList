@@ -3,6 +3,7 @@ package com.qa.todolist.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.qa.todolist.persistance.domain.TaskDomain;
 import com.qa.todolist.persistance.dtos.TaskDTO;
 
@@ -117,4 +117,26 @@ public class TaskControllerIntergrationTest {
 		
 		this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
 }
+	
+	@Test
+	public void delete() throws Exception{
+		
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE, "http://localhost:8080/task/delete/" + ID);
+		
+		ResultMatcher matchStatus = MockMvcResultMatchers.status().isNoContent();
+		
+		this.mock.perform(mockRequest).andExpect(matchStatus);
+
+	}
+	
+	@Disabled 
+	@Test
+	public void deleteInternalError() throws Exception{
+		
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE, "http://localhost:8080/task/delete/" + 5L);
+
+		ResultMatcher nonMatch = MockMvcResultMatchers.status().isInternalServerError();
+		
+		this.mock.perform(mockRequest).andExpect(nonMatch);
+	} 
 }
