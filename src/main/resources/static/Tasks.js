@@ -208,19 +208,35 @@ const updateTask = () => {
 		}
 	}
 	
-	console.log(data);
-	console.log(JSON.stringify(data));
+console.log(data);
+console.log(JSON.stringify(data));
 
-	fetch(`http://localhost:8080/task/update/${taskIdValue}`, {
+	fetch("http://localhost:8080/task/create", {
 		method: "PUT",
 		body: JSON.stringify(data),
 		headers: {
 			"Content-Type": "application/json"
 		}
-	}).then(response => response.json())
-		.then(info => console.log(info))
-		.catch(err => console.error(`something went wrong ${err}`));
-
+	}).then((response) => {
+			if (response.status != 201) {
+				throw new Error(`i dont have a status of 201`);
+			} else {
+				console.log(response);
+				console.log(`response is okay (201)`);
+				printCreateCon(`your task ${actValue} was created, use read all to find the id` );
+				
+					
+				
+						
+						//let myJSON = JSON.stringify(tasks.taskList);
+						//printTaskToScreen(myJSON);
+					
+					
+				}
+			}
+		).catch((err) => {
+			console.error(err);
+		})
 }
 
 
