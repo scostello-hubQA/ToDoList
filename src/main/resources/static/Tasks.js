@@ -12,10 +12,13 @@ const updatePriority1 = document.querySelector('#updatePriority');
 const updateDate1 = document.querySelector('#updateDate');
 const updateAddInfo1 = document.querySelector('#updateAddInfo');
 const updateTaskCompletion1 = document.querySelector('#updatebool');
-//const updateToDoTask1 = document.querySelector('#updateToDoTask');
+const updateToDoTask1 = document.querySelector('#updateToDoTask');
 const taskprint = document.querySelector('#printToScreenTask');
 const printDelete = document.querySelector('#confirmationOfDelete');
 const confirmCreate = document.querySelector('#createConfirmed');
+const clearPage = document.querySelector('#clearPage');
+const removeRead = document.querySelector('#forRemoveP');
+
 
 
 const printTaskToScreen = (task) => {
@@ -74,7 +77,8 @@ const createTask = () => {
 			"id": toDoValue
 		}
 	}
-
+console.log(data);
+console.log(JSON.stringify(data));
 
 	fetch("http://localhost:8080/task/create", {
 		method: "POST",
@@ -191,7 +195,7 @@ const updateTask = () => {
 	const dateValue = updateDate1.value;
 	const notesValue = updateAddInfo1.value;
 	const completedValue = updateTaskCompletion1.value;
-//	const updatedToDoValue = updateToDoTask1;
+	const updatedToDoValue = updateToDoTask1;
 
 	let data = {
 		
@@ -200,9 +204,12 @@ const updateTask = () => {
 		"date": dateValue,
 		"notes": notesValue,
 		"completed": completedValue ? false : true,
-		//"toDo": {"id": updatedToDoValue
-		//}
+		"toDo": {"id": updatedToDoValue
+		}
 	}
+	
+	console.log(data);
+	console.log(JSON.stringify(data));
 
 	fetch(`http://localhost:8080/task/update/${taskIdValue}`, {
 		method: "PUT",
