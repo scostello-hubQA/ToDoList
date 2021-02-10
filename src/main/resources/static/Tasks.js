@@ -185,6 +185,7 @@ const deleteTask = () => {
 const updateTask = () => {
 
 	const taskIdValue = updateId1.value;
+	
 	const actValue = updateTask1.value;
 	const priorityValue = updatePriority1.value;
 	const dateValue = updateDate1.value;
