@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
@@ -20,6 +21,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.qa.todolist.persistance.domain.TaskDomain;
 import com.qa.todolist.persistance.dtos.TaskDTO;
 
@@ -83,5 +85,36 @@ public class TaskControllerIntergrationTest {
 		
 		this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
 	}
+	
+	@Test
+	public void create() throws Exception{
+		
+		TaskDomain contentBody = new TaskDomain(1L, "Practice", 3, "22/06/2022", "this is a test to make sure we can prepopulate the database", false, null);
+		TaskDTO expectedResult = mapToDTO(contentBody);
+		
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.POST, "http://localhost:8080/task/create")
+				.contentType(MediaType.APPLICATION_JSON).content(jsonifier.writeValueAsString(contentBody)).accept(MediaType.APPLICATION_JSON);
+		
+		ResultMatcher matchStatus = MockMvcResultMatchers.status().isCreated();
+		ResultMatcher matchContent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(expectedResult));
+		
+		this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
 
+}
+	
+	
+	@Test
+	public void update() throws Exception{
+		
+		TaskDomain contentBody = new TaskDomain(1L, "Practice", 3, "22/06/2022", "this is a test to make sure we can prepopulate the database", false, null);
+		TaskDTO expectedResult = mapToDTO(contentBody);
+		
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.PUT, "http://localhost:8080/task/update/" + ID)
+				.contentType(MediaType.APPLICATION_JSON).content(jsonifier.writeValueAsString(contentBody)).accept(MediaType.APPLICATION_JSON);
+		
+		ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
+		ResultMatcher matchContent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(expectedResult));
+		
+		this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
+}
 }
