@@ -12,7 +12,20 @@ const updatePriority1 = document.querySelector('#updatePriority');
 const updateDate1 = document.querySelector('#updateDate');
 const updateAddInfo1 = document.querySelector('#updateAddInfo');
 const updateTaskCompletion1 = document.querySelector('#updatebool');
-//const updateToDoTask1 = document.querySelector('#updateToDoTask');
+const updateToDoTask1 = document.querySelector('#updateToDoTask');
+const taskprint = document.querySelector('#printToScreenTask');
+
+
+const printTaskToScreen = (tasklist) => {
+	let user = document.createElement("p");
+	let text = document.createTextNode(`${tasklist}`);
+	user.appendChild(text);
+	taskprint.appendChild(user);
+
+}
+
+
+
 
 
 const createTask = () => {
@@ -64,6 +77,7 @@ const createTask = () => {
 //}
 
 
+
 const taskRead = () => {
 	fetch("http://localhost:8080/task/readAll")
 		.then((response) => {
@@ -72,15 +86,26 @@ const taskRead = () => {
 			} else {
 				console.log(response);
 				console.log(`response is okay (200)`);
+				
 				response.json().then((infofromserver) => {
 					console.log(infofromserver);
-					//     console.log(infofromserver.data);
+					console.log(infofromserver.data);
+					console.table(infofromserver);
+					
+					for(let tasks of infofromserver){
+						printTaskToScreen(tasks.taskId+ " | " + tasks.act+ " | " + tasks.notes);
+						
+						//let myJSON = JSON.stringify(tasks.taskList);
+						//printTaskToScreen(myJSON);
+					}
+					
 				})
 			}
 		}).catch((err) => {
 			console.error(err);
 		})
 }
+
 
 
 const deleteTask = () => {
@@ -100,35 +125,35 @@ const deleteTask = () => {
 
 const updateTask = () => {
 
-const actIdValue = updateId1.value;
+	const actIdValue = updateId1.value;
 	const actValue = updateTask1.value;
 	const priorityValue = updatePriority1.value;
 	const dateValue = updateDate1.value;
 	const notesValue = updateAddInfo1.value;
 	const completedValue = updateTaskCompletion1.value;
 	const updatedToDoValue = updateToDoTask1;
-	
+
 	let data = {
-		"taskId" : actIdValue,
-		"act" : actValue,
-		"priority" : priorityValue,
-		"date" : dateValue,
-		"notes" : notesValue,
-		"completed" : completedValue ? false : true,
+		"taskId": actIdValue,
+		"act": actValue,
+		"priority": priorityValue,
+		"date": dateValue,
+		"notes": notesValue,
+		"completed": completedValue ? false : true,
 		"toDo": {
 			"id": updatedToDoValue
 		}
 	}
-	
+
 	fetch(`http://localhost:8080/task/update/${actIdValue}`, {
-		method : "PUT",
-		body : JSON.stringify(data),
-		headers :{
-			"Content-Type":"application/json"
+		method: "PUT",
+		body: JSON.stringify(data),
+		headers: {
+			"Content-Type": "application/json"
 		}
 	}).then(response => response.json())
-	.then(info => console.log(info))
-	.catch(err => console.error(`something went wrong ${err}`));
+		.then(info => console.log(info))
+		.catch(err => console.error(`something went wrong ${err}`));
 
 }
 
