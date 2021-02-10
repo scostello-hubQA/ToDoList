@@ -12,7 +12,7 @@ const updatePriority1 = document.querySelector('#updatePriority');
 const updateDate1 = document.querySelector('#updateDate');
 const updateAddInfo1 = document.querySelector('#updateAddInfo');
 const updateTaskCompletion1 = document.querySelector('#updatebool');
-const updateToDoTask1 = document.querySelector('#updateToDoTask');
+//const updateToDoTask1 = document.querySelector('#updateToDoTask');
 const taskprint = document.querySelector('#printToScreenTask');
 const printDelete = document.querySelector('#confirmationOfDelete');
 const confirmCreate = document.querySelector('#createConfirmed');
@@ -181,31 +181,29 @@ const deleteTask = () => {
 }
 
 
-
 //still doesnt work
 const updateTask = () => {
 
-	const actIdValue = updateId1.value;
+	const taskIdValue = updateId1.value;
 	const actValue = updateTask1.value;
 	const priorityValue = updatePriority1.value;
 	const dateValue = updateDate1.value;
 	const notesValue = updateAddInfo1.value;
 	const completedValue = updateTaskCompletion1.value;
-	const updatedToDoValue = updateToDoTask1;
+//	const updatedToDoValue = updateToDoTask1;
 
 	let data = {
-		"taskId": actIdValue,
+		
 		"act": actValue,
 		"priority": priorityValue,
 		"date": dateValue,
 		"notes": notesValue,
 		"completed": completedValue ? false : true,
-		"toDo": {
-			"id": updatedToDoValue
-		}
+		//"toDo": {"id": updatedToDoValue
+		//}
 	}
 
-	fetch(`http://localhost:8080/task/update/${actIdValue}`, {
+	fetch(`http://localhost:8080/task/update/${taskIdValue}`, {
 		method: "PUT",
 		body: JSON.stringify(data),
 		headers: {
