@@ -211,19 +211,19 @@ const updateTask = () => {
 console.log(data);
 console.log(JSON.stringify(data));
 
-	fetch("http://localhost:8080/task/create", {
+	fetch(`http://localhost:8080/task/update/${taskIdValue}`, {
 		method: "PUT",
 		body: JSON.stringify(data),
 		headers: {
 			"Content-Type": "application/json"
 		}
 	}).then((response) => {
-			if (response.status != 201) {
-				throw new Error(`i dont have a status of 201`);
+			if (response.status != 200) {
+				throw new Error(`i dont have a status of 200`);
 			} else {
 				console.log(response);
-				console.log(`response is okay (201)`);
-				printCreateCon(`your task ${actValue} was created, use read all to find the id` );
+				console.log(`response is okay (200)`);
+				//printCreateCon(`your task ${actValue} was created, use read all to find the id` );
 				
 					
 				
