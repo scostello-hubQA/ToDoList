@@ -185,7 +185,7 @@ const deleteTask = () => {
 }
 
 
-//still doesnt work
+
 const updateTask = () => {
 
 	const taskIdValue = updateId1.value;
