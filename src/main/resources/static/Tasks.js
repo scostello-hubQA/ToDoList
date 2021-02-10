@@ -21,9 +21,19 @@ const removeRead = document.querySelector('#forRemoveP');
 
 
 
-const printTaskToScreen = (task) => {
+const jsonToString = (tasks) => {
+	let id = tasks.id;
+	let act = tasks.act;
+	let priority = tasks.priority;
+	
+	
+	let statement = `ID = ${id}, task = ${act}, priority = ${priority}`;
+	printTaskToScreen(statement);
+}
+
+const printTaskToScreen = (tasks) => {
 	let user = document.createElement("p");
-	let text = document.createTextNode(`${task}`);
+	let text = document.createTextNode(`${tasks}`);
 	user.appendChild(text);
 	taskprint.appendChild(user);
 
@@ -139,6 +149,7 @@ const taskRead = () => {
 					
 					for(let tasks of infofromserver){
 						printTaskToScreen(tasks.taskId+ " | " + tasks.act+ " | " + tasks.notes);
+						jsonToString();
 						
 						//let myJSON = JSON.stringify(tasks.taskList);
 						//printTaskToScreen(myJSON);
