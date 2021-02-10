@@ -14,14 +14,29 @@ const updateAddInfo1 = document.querySelector('#updateAddInfo');
 const updateTaskCompletion1 = document.querySelector('#updatebool');
 const updateToDoTask1 = document.querySelector('#updateToDoTask');
 const taskprint = document.querySelector('#printToScreenTask');
+const printDelete = document.querySelector('#confirmationOfDelete');
 
 
-const printTaskToScreen = (tasklist) => {
+const printTaskToScreen = (task) => {
 	let user = document.createElement("p");
-	let text = document.createTextNode(`${tasklist}`);
+	let text = document.createTextNode(`${task}`);
 	user.appendChild(text);
 	taskprint.appendChild(user);
 
+}
+
+const printDeleteToScreen = (deleted) => {
+	let user = document.createElement("p");
+	let text = document.createTextNode(`your task with id ${deleted} was deleted`);
+	user.appendChild(text);
+	printDelete.appendChild(user);
+}
+
+const deleteFailed = (notDeleted) => {
+	let user = document.createElement("p");
+	let text = document.createTextNode(`your task with id ${notDeleted} was not deleted`);
+	user.appendChild(text);
+	printDelete.appendChild(user);
 }
 
 
@@ -60,6 +75,7 @@ const createTask = () => {
 	}).then(response => response.json())
 		.then(info => console.log(info))
 		.catch(err => console.error('something went wrong! ${err}'));
+		
 
 }
 
@@ -117,10 +133,29 @@ const deleteTask = () => {
 
 	fetch(`http://localhost:8080/task/delete/${taskDeleteId}`, {
 		method: "DELETE",
-	}).then(response => console.log(`task with id ${taskDeleteId} deleted`))
-		.catch(err => console.error(`Stop!! ${err}`));
-
+	}).then((response) => {
+			if (response.status != 204) {
+				throw new Error(`i dont have a status of 204`);
+			} else {
+				console.log(response);
+				console.log(`response is okay (204)`);
+				printDeleteToScreen(`your task with id ${taskDeleteId} `);
+				
+					
+				
+						
+						//let myJSON = JSON.stringify(tasks.taskList);
+						//printTaskToScreen(myJSON);
+					
+					
+				}
+			}
+		).catch((err) => {
+			console.error(err);
+		})
 }
+
+
 
 
 const updateTask = () => {
