@@ -136,5 +136,27 @@ public class TaskSeleniumTest {
 				assertEquals("your task selenium testing was updated, use read all to view changes", result);
 		
 	}
+	@Disabled
+	@Test
+	public void readByIdTest() {
+		//given
+		driver.get(URL);
+		
+		//when
+		targ = driver.findElement(By.xpath("/html/body/button[3]"));
+		targ.click();
+		
+		//and
+		
+		//then
+		
+		//assert
+		
+		
+		
+		
+		
+		
+	}
 	
 }
