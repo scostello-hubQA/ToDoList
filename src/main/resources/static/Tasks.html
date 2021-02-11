@@ -164,12 +164,12 @@
                 </div>
                 <div class="modal-body">
                     <form action="" method="">
-                        <input type="text" placeholder="ID of the task you wish to read" class="form-control">
+                        <input type="number" id="readbyid" placeholder="ID of the task you wish to read" class="form-control">
                     </form>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+                    <button type="button" class="btn btn-primary"  data-dismiss="modal" onclick="readTaskById();">Submit</button>
 
                 </div>
 
@@ -206,7 +206,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="deleteTask();">Submit</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="deleteTask();">Submit</button>
 
                 </div>
 

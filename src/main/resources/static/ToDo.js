@@ -6,6 +6,7 @@ const readAllPrint = document.querySelector('#readAllToDo');
 const deleteToDoById = document.querySelector('#DeleteToDo');
 const todoUpdateName = document.querySelector('#updatedname');
 const todoUpdateId = document.querySelector('#UpdateId');
+const readById = document.querySelector('#toDoReadId');
 
 
 
@@ -36,7 +37,31 @@ const printDeleteToScreen = (deleted)=>{
 
 
 
-
+const readByIdToDo =() => {
+	const readToDoId = readById.value;
+	
+	fetch(`http://localhost:8080/todo/read/${readToDoId}`)
+	.then((response) => {
+		if (response.status !=200){
+			throw new Error(`i dont have a status of 200`);
+			
+		}else{
+			console.log(response);
+			console.log(`response is okay (200)`);
+			response.json().then((infofromserver) => {
+				console.log(infofromserver);
+				
+					printToDoToScreen(infofromserver.id + ". " +infofromserver.name);
+					let myJSON = JSON.stringify(infofromserver.taskList);
+						printToDoToScreen(myJSON);
+						
+				
+			})
+		}
+	}).catch((err) => {
+		console.error(err);
+	})
+}
 
 const createToDo = () => {
 	const toDoValue = toDoCreate.value;

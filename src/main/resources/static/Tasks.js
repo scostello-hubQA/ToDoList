@@ -18,6 +18,7 @@ const printDelete = document.querySelector('#confirmationOfDelete');
 const confirmCreate = document.querySelector('#createConfirmed');
 const clearPage = document.querySelector('#clearPage');
 const removeRead = document.querySelector('#forRemoveP');
+const readById1 = document.querySelector('#readbyid');
 
 
 
@@ -48,8 +49,8 @@ const printCreateCon = (created) => {
 	let text = document.createTextNode(`${created}`);
 	user.appendChild(text);
 	confirmCreate.appendChild(user);
-	
-	
+
+
 }
 
 
@@ -77,8 +78,8 @@ const createTask = () => {
 			"id": toDoValue
 		}
 	}
-console.log(data);
-console.log(JSON.stringify(data));
+	console.log(data);
+	console.log(JSON.stringify(data));
 
 	fetch("http://localhost:8080/task/create", {
 		method: "POST",
@@ -87,25 +88,25 @@ console.log(JSON.stringify(data));
 			"Content-Type": "application/json"
 		}
 	}).then((response) => {
-			if (response.status != 201) {
-				throw new Error(`i dont have a status of 201`);
-			} else {
-				console.log(response);
-				console.log(`response is okay (201)`);
-				printCreateCon(`your task ${actValue} was created, use read all to find the id` );
-				
-					
-				
-						
-						//let myJSON = JSON.stringify(tasks.taskList);
-						//printTaskToScreen(myJSON);
-					
-					
-				}
-			}
-		).catch((err) => {
-			console.error(err);
-		})
+		if (response.status != 201) {
+			throw new Error(`i dont have a status of 201`);
+		} else {
+			console.log(response);
+			console.log(`response is okay (201)`);
+			printCreateCon(`your task ${actValue} was created, use read all to find the id`);
+
+
+
+
+			//let myJSON = JSON.stringify(tasks.taskList);
+			//printTaskToScreen(myJSON);
+
+
+		}
+	}
+	).catch((err) => {
+		console.error(err);
+	})
 }
 
 
@@ -131,19 +132,19 @@ const taskRead = () => {
 			} else {
 				console.log(response);
 				console.log(`response is okay (200)`);
-				
+
 				response.json().then((infofromserver) => {
 					console.log(infofromserver);
 					console.log(infofromserver.data);
 					console.table(infofromserver);
-					
-					for(let tasks of infofromserver){
-						printTaskToScreen(tasks.taskId+ " | " + tasks.act+ " | " + tasks.notes);
-						
+
+					for (let tasks of infofromserver) {
+						printTaskToScreen(tasks.taskId + " | " + tasks.act + " | " + tasks.notes);
+
 						//let myJSON = JSON.stringify(tasks.taskList);
 						//printTaskToScreen(myJSON);
 					}
-					
+
 				})
 			}
 		}).catch((err) => {
@@ -163,25 +164,25 @@ const deleteTask = () => {
 	fetch(`http://localhost:8080/task/delete/${taskDeleteId}`, {
 		method: "DELETE",
 	}).then((response) => {
-			if (response.status != 204) {
-				throw new Error(`i dont have a status of 204`);
-			} else {
-				console.log(response);
-				console.log(`response is okay (204)`);
-				printDeleteToScreen(`your task with id ${taskDeleteId} `);
-				
-					
-				
-						
-						//let myJSON = JSON.stringify(tasks.taskList);
-						//printTaskToScreen(myJSON);
-					
-					
-				}
-			}
-		).catch((err) => {
-			console.error(err);
-		})
+		if (response.status != 204) {
+			throw new Error(`i dont have a status of 204`);
+		} else {
+			console.log(response);
+			console.log(`response is okay (204)`);
+			printDeleteToScreen(`your task with id ${taskDeleteId} `);
+
+
+
+
+			//let myJSON = JSON.stringify(tasks.taskList);
+			//printTaskToScreen(myJSON);
+
+
+		}
+	}
+	).catch((err) => {
+		console.error(err);
+	})
 }
 
 
@@ -189,7 +190,7 @@ const deleteTask = () => {
 const updateTask = () => {
 
 	const taskIdValue = updateId1.value;
-	
+
 	const actValue = updateTask1.value;
 	const priorityValue = updatePriority1.value;
 	const dateValue = updateDate1.value;
@@ -198,20 +199,21 @@ const updateTask = () => {
 	const updatedToDoValue = updateToDoTask1.value;
 
 	let data = {
-		
+
 		"act": actValue,
 		"priority": priorityValue,
 		"date": dateValue,
 		"notes": notesValue,
 		"completed": completedValue ? false : true,
-		"toDo": {"id": updatedToDoValue
+		"toDo": {
+			"id": updatedToDoValue
 		}
 	}
-	
+
 	console.log()
-	
-console.log(data);
-console.log(JSON.stringify(data));
+
+	console.log(data);
+	console.log(JSON.stringify(data));
 
 	fetch(`http://localhost:8080/task/update/${taskIdValue}`, {
 		method: "PUT",
@@ -220,25 +222,63 @@ console.log(JSON.stringify(data));
 			"Content-Type": "application/json"
 		}
 	}).then((response) => {
-			if (response.status != 200) {
-				throw new Error(`i dont have a status of 200`);
+		if (response.status != 200) {
+			throw new Error(`i dont have a status of 200`);
+		} else {
+			console.log(response);
+			console.log(`response is okay (200)`);
+			//printCreateCon(`your task ${actValue} was created, use read all to find the id` );
+
+
+
+
+			//let myJSON = JSON.stringify(tasks.taskList);
+			//printTaskToScreen(myJSON);
+
+
+		}
+	}
+	).catch((err) => {
+		console.error(err);
+	})
+}
+
+
+const readTaskById = () => {
+
+	const readById2 = readById1.value;
+	
+		let data = {
+		"taskId": readById2
+	}
+
+	fetch(`http://localhost:8080/task/read/${readById2}`)
+		.then((response) => {
+
+			if (response.status !== 200) {
+				throw new Error("I don't have a status of 200");
 			} else {
 				console.log(response);
-				console.log(`response is okay (200)`);
-				//printCreateCon(`your task ${actValue} was created, use read all to find the id` );
-				
+				console.log(`response is OK (200)`);
+				response.json().then((infofromserver) => {
+					console.log(infofromserver);
+					console.log(infofromserver.data);
+					console.table(infofromserver);
+
 					
-				
-						
+						//printTaskToScreen(tasks.taskId + " | " + tasks.act + " | " + tasks.notes);
+
 						//let myJSON = JSON.stringify(tasks.taskList);
 						//printTaskToScreen(myJSON);
-					
-					
-				}
+					}
+
+				)
 			}
-		).catch((err) => {
+		}).catch((err) => {
 			console.error(err);
 		})
 }
+
+
 
 
