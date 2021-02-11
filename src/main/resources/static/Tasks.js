@@ -19,8 +19,18 @@ const confirmCreate = document.querySelector('#createConfirmed');
 const clearPage = document.querySelector('#clearPage');
 const removeRead = document.querySelector('#forRemoveP');
 const readById1 = document.querySelector('#readbyid');
+const confirmUpdate = document.querySelector('#updateConfirmed');
+const readbyid2 = document.querySelector('#readByID');
 
 
+
+const printReadToScreen = (read) => {
+	let user = document.createElement("p");
+	let text = document.createTextNode(`${read}`);
+	user.appendChild(text);
+	readbyid2.appendChild(user);
+
+}
 
 const printTaskToScreen = (tasks) => {
 	let user = document.createElement("p");
@@ -49,6 +59,14 @@ const printCreateCon = (created) => {
 	let text = document.createTextNode(`${created}`);
 	user.appendChild(text);
 	confirmCreate.appendChild(user);
+
+
+}
+const printUpdateCon = (updated) => {
+	let user = document.createElement("p");
+	let text = document.createTextNode(`${updated}`);
+	user.appendChild(text);
+	confirmUpdate.appendChild(user);
 
 
 }
@@ -227,13 +245,8 @@ const updateTask = () => {
 		} else {
 			console.log(response);
 			console.log(`response is okay (200)`);
-			//printCreateCon(`your task ${actValue} was created, use read all to find the id` );
-
-
-
-
-			//let myJSON = JSON.stringify(tasks.taskList);
-			//printTaskToScreen(myJSON);
+			printUpdateCon(`your task ${actValue} was updated, use read all to view changes`);
+	
 
 
 		}
@@ -263,7 +276,9 @@ const readTaskById = () => {
 				response.json().then((infofromserver) => {
 					console.log(infofromserver);
 					console.log(infofromserver.data);
+					let myJSON = JSON.stringify(infofromserver)
 					console.table(infofromserver);
+					printReadToScreen(myJSON);
 
 					
 						//printTaskToScreen(tasks.taskId + " | " + tasks.act + " | " + tasks.notes);
