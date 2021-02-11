@@ -142,19 +142,75 @@ public class TaskSeleniumTest {
 		//given
 		driver.get(URL);
 		
-		//when
+		//when i click the read button
 		targ = driver.findElement(By.xpath("/html/body/button[3]"));
 		targ.click();
 		
-		//and
+		//and pass in an id 
+		targ = driver.findElement(By.id("readbyid"));
+		targ.sendKeys("1");
+		targ = driver.findElement(By.xpath("//*[@id=\"readbutton\"]/div/div/div[3]/button"));
+		targ.click();
 		
-		//then
+		
+		//then i shoudl see the task appear on screen
+		
+		targ = driver.findElement(By.xpath("//*[@id=\"readByID\"]/p"));
+		String result = targ.getText();
 		
 		//assert
 		
+		assertEquals("{\"taskId\":1,\"act\":\"Practice\",\"priority\":3,\"date\":\"22/06/2022\",\"notes\":\"this is a test to make sure we can prepopulate the database\",\"completed\":false}", result);
+	
+	}
+	@Disabled
+	@Test
+	public void readAllTest() {
+		//given
+		driver.get(URL);
+		
+		//when i click the read all button
+		targ = driver.findElement(By.id("readAllButton"));
+		targ.click();
+		
+		//then i shouls recieve a list of all the tasks in the system
+		targ = new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"printToScreenTask\"]/p[2]")));
+		
+		String result = targ.getText();
+		
+		//assert this is true 
+		assertEquals("2 | Hoover | need to hoover all of downstairs", result);
+	}
+	
+	@Test
+	public void deleteTest() {
+		
+		//given
+		driver.get(URL);
+		
+		//when i click on the delete button
+		targ = driver.findElement(By.xpath("/html/body/button[5]"));
+		targ.click();
+		
+		//and pass in an id
+		targ = driver.findElement(By.id("taskDeleteId"));
+		targ.sendKeys("1");
+		//targ.submit();
+		//and click submit
 		
 		
 		
+		targ = driver.findElement(By.xpath("/html/body/div[4]/div/div/div[3]/button"));
+		targ.click();
+		
+		//then i should recieve a confirm meesssage
+		//targ = new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\\\"confirmationOfDelete\\\"]/p")));
+		targ = driver.findElement(By.xpath("//*[@id=\"confirmationOfDelete\"]/p"));
+		String result = targ.getText();
+		
+		//assert this is true 
+		
+		assertEquals("your task with id your task with id 1 was deleted", result);
 		
 		
 	}
