@@ -7,19 +7,20 @@ const deleteToDoById = document.querySelector('#DeleteToDo');
 const todoUpdateName = document.querySelector('#updatedname');
 const todoUpdateId = document.querySelector('#UpdateId');
 const readById = document.querySelector('#toDoReadId');
+const confirmCreate = document.querySelector('#createConfirm');
 
 
 
-const jsonToString = (todo) => {
-	let id = todo.id;
-	let act = todo.name;
-	let myJSON = JSON.stringify(todo.taskList);
-	let priority = myJSON.priority;
+//const jsonToString = (todo) => {
+	//let id = todo.id;
+	//let act = todo.name;
+	//let myJSON = JSON.stringify(todo.taskList);
+	//let priority = myJSON.priority;
 	
 	
-	let statement = `ID = ${id}, task = ${act}, priority = ${priority}`;
-	printToDoToScreen(statement);
-}
+	//let statement = `ID = ${id}, task = ${act}, priority = ${priority}`;
+	//printToDoToScreen(statement);
+//}
 
 const printToDoToScreen = (todolist) => {
 	let user = document.createElement("p");
@@ -33,6 +34,14 @@ const printDeleteToScreen = (deleted)=>{
 	let text = document.createTextNode(`${deleted}`);
 	user.appendChild(text);
 	deleteToDoById.appendChild(user);
+}
+
+const printCreateCon = (confirm) => {
+		let user = document.createElement("p");
+	let text = document.createTextNode(`${confirm}`);
+	user.appendChild(text);
+	confirmCreate.appendChild(user);
+	
 }
 
 
@@ -77,12 +86,27 @@ const createToDo = () => {
 		headers: {
 			"Content-Type": "application/json"
 		}
-	}).then(response => response.json())
-		.then(info => console.log(info))
-		.catch(err => console.error('something went wrong! ${err}'));
+	}).then((response) => {
+		if (response.status != 201) {
+			throw new Error(`i dont have a status of 201`);
+		} else {
+			console.log(response);
+			console.log(`response is okay (201)`);
+			printCreateCon(`your task ${toDoValue} was created, use read all to find the id`);
 
+
+
+
+			//let myJSON = JSON.stringify(tasks.taskList);
+			//printTaskToScreen(myJSON);
+
+
+		}
+	}
+	).catch((err) => {
+		console.error(err);
+	})
 }
-
 const toDoReadAll = () => {
 	fetch("http://localhost:8080/todo/readAll")
 		.then((response) => {
@@ -95,13 +119,12 @@ const toDoReadAll = () => {
 					console.log(infofromserver);
 					console.log(infofromserver.data);
 					for(let todo of infofromserver){
-						printToDoToScreen(todo.name);
-						printToDoToScreen(todo.id);
+						
+						//printToDoToScreen(todo.id);
 						console.table(todo);
-						let myJSON = JSON.stringify(todo.taskList);
+						printToDoToScreen(todo.id + ". " +todo.name);
+					let myJSON = JSON.stringify(todo.taskList);
 						printToDoToScreen(myJSON);
-						console.log(myJSON);
-						jsonToString(todo);
 						
 					}
 
