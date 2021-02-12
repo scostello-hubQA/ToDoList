@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import com.qa.todolist.persistance.domain.TaskDomain;
+
 import com.qa.todolist.persistance.domain.ToDoDomain;
-import com.qa.todolist.persistance.dtos.TaskDTO;
+
 import com.qa.todolist.persistance.dtos.ToDoDTO;
 import com.qa.todolist.persistance.repos.ToDoRepo;
 

@@ -13,7 +13,7 @@ public class ToDoDTO {
 
 	public ToDoDTO() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 

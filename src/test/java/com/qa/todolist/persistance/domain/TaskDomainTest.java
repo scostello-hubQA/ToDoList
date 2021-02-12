@@ -28,7 +28,7 @@ public class TaskDomainTest {
 		Assertions.assertThat(task.getPriority()).isNotNull();
 		Assertions.assertThat(task.getDate()).isNotNull();
 		Assertions.assertThat(task.getNotes()).isNotNull();
-		Assertions.assertThat(task.isCompleted()).isEqualTo(true);
+		Assertions.assertThat(task.isCompleted()).isTrue();
 		Assertions.assertThat(task.getToDo()).isNull();
 		
 		
