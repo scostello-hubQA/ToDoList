@@ -135,16 +135,34 @@ public class ToDoSeleniumTesting {
 	public void readToDo() {
 		
 		//test start
+		test = report.startTest("Read Individual To Do Test");
 		
 		//given
+		driver.get(URL);
 		
 		//when
+		targ = driver.findElement(By.xpath("/html/body/button[3]"));
+		targ.click();
+		//and - enter id of 1
+		targ = driver.findElement(By.id("toDoReadId"));
+		targ.sendKeys("1");
+		//and click submit 
+		targ = driver.findElement(By.xpath("//*[@id=\"ReadId\"]/div/div/div[3]/button"));
+		targ.click();
 		
 		//then
-		
+		targ = new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"readAllToDo\"]/p[2]")));
+		String result = targ.getText();
+		String expected = "\"taskId\":1";
 		//test results
+		if(result.contains(expected)) {
+			test.log(LogStatus.PASS, expected);
+		}else {
+			test.log(LogStatus.FAIL, "Read Failed");
+		}
 		
 		//assert
+		assertThat(result.contains(expected));
 		
 	}
 	
@@ -152,34 +170,64 @@ public class ToDoSeleniumTesting {
 	public void readAllToDo() {
 		
 		//test start
+		test = report.startTest("Read All To Do Test");
 		
 		//given
-		
+		driver.get(URL);
 		//when
+		targ = driver.findElement(By.xpath("//*[@id=\"readAllButton\"]"));
+		targ.click();
 		
 		//then
+		targ = new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"readAllToDo\"]/p[1]")));
+		String result = targ.getText();
+		String expected = "1.";
 		
 		//test results
+		if (result.contains(expected)) {
+			test.log(LogStatus.PASS, "Passed");
+		}else {
+			test.log(LogStatus.FAIL, "Failed to Read All");
+		}
 		
 		//assert
-		
+		assertThat(result.contains(expected));
 	}
 	
 	@Test
 	public void deleteToDo() {
 		
 		//test start
+		test = report.startTest("Delete To Do By Id Test");
 		
 		//given
+		driver.get(URL);
 		
 		//when
+		targ = driver.findElement(By.xpath("/html/body/button[5]"));
+		targ.click();
+		//and enter id
+		targ = driver.findElement(By.id("toDoDeleteId"));
+		targ.sendKeys("2");
+		//and hit submit 
+		targ = driver.findElement(By.xpath("//*[@id=\"deletebutton\"]/div/div/div[3]/button"));
+		targ.click();
+		
 		
 		//then
+		targ = new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"DeleteToDo\"]/p")));
+		String result = targ.getText();
+		String expected = "was deleted";
 		
 		//test results
+		if(result.contains(expected)) {
+			test.log(LogStatus.PASS, expected);
+		}else {
+			test.log(LogStatus.FAIL, "Delete Failed");
+		}
 		
 		//assert
-		
+		assertThat(result.contains(expected));
 	}
 
 }

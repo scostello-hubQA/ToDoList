@@ -210,6 +210,7 @@ public class TaskSeleniumTest {
 	
 	@Test
 	public void readAllTest() {
+		test = report.startTest("Read All Task Test");
 		//given
 		driver.get(URL);
 		
@@ -221,9 +222,16 @@ public class TaskSeleniumTest {
 		targ = new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"printToScreenTask\"]/p[2]")));
 		
 		String result = targ.getText();
+		String expected = "2 | Hoover | need to hoover all of downstairs";
+		
+		if(result.equals(expected)) {
+			test.log(LogStatus.PASS, expected);
+		}else {
+			test.log(LogStatus.FAIL, "Read All Failed");
+		}
 		
 		//assert this is true 
-		assertEquals("2 | Hoover | need to hoover all of downstairs", result);
+		assertEquals(expected, result);
 	}
 	
 	@Test
