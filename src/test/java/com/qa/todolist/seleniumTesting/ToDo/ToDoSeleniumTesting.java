@@ -41,7 +41,7 @@ public class ToDoSeleniumTesting {
 		System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
 
 		ChromeOptions config = new ChromeOptions();
-		config.setHeadless(!true);// this stops the window pop up if true - this can reduce the time of the
+		config.setHeadless(true);// this stops the window pop up if true - this can reduce the time of the
 									// runtime test
 		driver = new ChromeDriver(config);
 		driver.manage().window().setSize(new Dimension(1366, 786)); // sets the size of the window that runs the test
@@ -61,7 +61,7 @@ public class ToDoSeleniumTesting {
 		report.close();
 		
 	}
-	@Disabled
+	
 	@Test
 	public void createToDo() {
 		
@@ -93,7 +93,7 @@ public class ToDoSeleniumTesting {
 		//assertions
 		assertThat(result.concat(expected));
 	}
-	@Disabled
+	
 	@Test
 	public void updateToDo() {
 		
@@ -132,7 +132,7 @@ public class ToDoSeleniumTesting {
 		//assert
 		assertThat(result.contains(expected));
 	}
-	@Disabled
+	
 	@Test
 	public void readToDo() {
 		
@@ -167,7 +167,7 @@ public class ToDoSeleniumTesting {
 		assertThat(result.contains(expected));
 		
 	}
-	@Disabled
+	
 	@Test
 	public void readAllToDo() {
 		

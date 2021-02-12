@@ -65,7 +65,7 @@ public class TaskSeleniumTest {
 		report.close();
 
 	} 
-	@Disabled
+	
 	@Test
 	public void createTask() {
 		test = report.startTest("Create Task Test");
@@ -117,7 +117,7 @@ public class TaskSeleniumTest {
 		
 		
 	}
-	@Disabled
+	
 	@Test
 	public void updateTest() {
 		test = report.startTest("Update Task Test");
@@ -172,7 +172,7 @@ public class TaskSeleniumTest {
 				assertEquals(expected, result);
 		
 	}
-	@Disabled
+	
 	@Test
 	public void readByIdTest() {
 		test = report.startTest("Read Individual Task Test");
@@ -207,7 +207,7 @@ public class TaskSeleniumTest {
 		assertThat(result.contains(expected));
 	
 	}
-	@Disabled
+	
 	@Test
 	public void readAllTest() {
 		test = report.startTest("Read All Task Test");

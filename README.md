@@ -1,27 +1,30 @@
-Coverage: 
+Coverage: Currently at 90.6% on the src/main.
+
+![](ProjectResources/CurrentTesting.png)
 
 
 # To Do List Project
 
-This is a simple To-Do list project that enables the user to interact with a webpage and perfrom simple CRUD functionality.
-This project allowed me to explore further technologies...
-The project document folder contains...
+This is a simple To-Do list project that enables the user to interact with a webpage and perform simple CRUD functionality.  
+This project allowed me to explore further technologies such as SpringBoot - as well as the front end tech with entails JavaScript and HTML.  
+The project document folder contains my risk assessment, PPT, and certain relevant images  with repect to the project.  
 
 
 ## Getting Started
 
-The below instructions will get you a version of the project up and running in a local environment for developing and testinf purposes, see the deployment section for further details about the live environment.
+The below instructions will get you a version of the project up and running in a local environment for developing and testing purposes.  
+
 
 
 
 ### Prerequisites
 
-(add links)
-postman
-springboot
-GCP
-Java
-Maven
+
+* [Postman](https://www.postman.com/downloads/)  
+* [Spring](https://spring.io/tools)   
+* [Java](https://www.java.com/en/download/)  
+* [Maven](https://maven.apache.org/index.html)   
+* [Git](https://git-scm.com/downloads)  
 
 
 ### Installing
