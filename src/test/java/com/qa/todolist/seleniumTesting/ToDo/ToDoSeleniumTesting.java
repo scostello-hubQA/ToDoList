@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -60,6 +61,7 @@ public class ToDoSeleniumTesting {
 		report.close();
 		
 	}
+	@Disabled
 	@Test
 	public void createToDo() {
 		
@@ -91,7 +93,7 @@ public class ToDoSeleniumTesting {
 		//assertions
 		assertThat(result.concat(expected));
 	}
-	
+	@Disabled
 	@Test
 	public void updateToDo() {
 		
@@ -130,7 +132,7 @@ public class ToDoSeleniumTesting {
 		//assert
 		assertThat(result.contains(expected));
 	}
-	
+	@Disabled
 	@Test
 	public void readToDo() {
 		
@@ -165,7 +167,7 @@ public class ToDoSeleniumTesting {
 		assertThat(result.contains(expected));
 		
 	}
-	
+	@Disabled
 	@Test
 	public void readAllToDo() {
 		
@@ -193,7 +195,7 @@ public class ToDoSeleniumTesting {
 		//assert
 		assertThat(result.contains(expected));
 	}
-	
+	@Disabled
 	@Test
 	public void deleteToDo() {
 		
