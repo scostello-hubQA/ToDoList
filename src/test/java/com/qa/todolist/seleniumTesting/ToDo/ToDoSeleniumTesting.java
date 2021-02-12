@@ -96,17 +96,39 @@ public class ToDoSeleniumTesting {
 	public void updateToDo() {
 		
 		//test start
+		test = report.startTest("Update To Do Test");
 		
 		//given
+		driver.get(URL);
 		
 		//when
+		targ = driver.findElement(By.xpath("/html/body/button[2]"));
+		targ.click();
+		//and enter id
+		targ = driver.findElement(By.id("UpdateId"));
+		targ.sendKeys("1");
 		
+		//and enter new name
+		targ = driver.findElement(By.id("updatedname"));
+		targ.sendKeys("Update Selenium");
+		
+		//and click submit 
+		targ = driver.findElement(By.xpath("//*[@id=\"updatebutton\"]/div/div/div[3]/button"));
+		targ.click();
 		//then
-		
+		targ = new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"updateConfirm\"]/p")));
+		String result = targ.getText();
+		String expected = "was updated, use read all to view changes";
 		//test results
 		
-		//assert
+		if(result.contains(expected)) {
+			test.log(LogStatus.PASS, expected);
+		}else {
+			test.log(LogStatus.FAIL, "Failed update");
+		}
 		
+		//assert
+		assertThat(result.contains(expected));
 	}
 	
 	@Test

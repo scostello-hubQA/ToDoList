@@ -8,7 +8,16 @@ const todoUpdateName = document.querySelector('#updatedname');
 const todoUpdateId = document.querySelector('#UpdateId');
 const readById = document.querySelector('#toDoReadId');
 const confirmCreate = document.querySelector('#createConfirm');
+const confirmUpdate = document.querySelector('#updateConfirm');
 
+const printUpdateCon = (updated) => {
+	let user = document.createElement("p");
+	let text = document.createTextNode(`${updated}`);
+	user.appendChild(text);
+	confirmUpdate.appendChild(user);
+
+
+}
 
 
 //const jsonToString = (todo) => {
@@ -182,7 +191,19 @@ const updateToDo = () =>{
 		headers: {
 			"Content-Type": "application/json"
 		}
-	}).then(response => response.json())
-		.then(info => console.log(info))
-		.catch(err => console.error(`something went wrong! ${err}`));
+	}).then((response) => {
+		if (response.status != 200) {
+			throw new Error(`i dont have a status of 200`);
+		} else {
+			console.log(response);
+			console.log(`response is okay (200)`);
+			printUpdateCon(`your to do ${updateName} was updated, use read all to view changes`);
+	
+
+
+		}
+	}
+	).catch((err) => {
+		console.error(err);
+	})
 }
