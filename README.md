@@ -13,6 +13,12 @@ The project document folder contains my risk assessment, PPT, and certain releva
 ## Getting Started
 
 The below instructions will get you a version of the project up and running in a local environment for developing and testing purposes.  
+1. clone and fork  
+2. open in IDE as maven/spring prj  
+3. run the local server from the bootdashboard   
+4. load up postman use the URLS to test the functionality is working  
+5. you can also head to localhost:8080/h2-console to checkout the database
+6. removing the h2-console from the url will take you to the index.html for the to do list
 
 
 

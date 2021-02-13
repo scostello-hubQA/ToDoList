@@ -177,7 +177,7 @@ public class TaskSeleniumTest {
 	public void readByIdTest() {
 		test = report.startTest("Read Individual Task Test");
 		
-		//given
+		//given the url to the task.html page 
 		driver.get(URL);
 		
 		//when i click the read button
@@ -191,19 +191,18 @@ public class TaskSeleniumTest {
 		targ.click();
 		
 		
-		//then i shoudl see the task appear on screen
+		//then i should see the task appear on screen
 		targ = new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"readByID\"]/p")));
-		//targ = driver.findElement(By.xpath("//*[@id=\"readByID\"]/p"));
 		String result = targ.getText();
 		String expected = "{\"taskId\":1,";
 		
-		//assert
+		//test logging if pass or fail
 		if(result.contains(expected)) {
 			test.log(LogStatus.PASS, expected);
 		}else {
 			test.log(LogStatus.FAIL, "failed to read");
 		}
-		
+		//assert that what comes back contains the char sequence provided 
 		assertThat(result.contains(expected));
 	
 	}
@@ -218,7 +217,7 @@ public class TaskSeleniumTest {
 		targ = driver.findElement(By.id("readAllButton"));
 		targ.click();
 		
-		//then i shouls recieve a list of all the tasks in the system
+		//then i should receive a list of all the tasks in the system printed to the screen
 		targ = new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"printToScreenTask\"]/p[2]")));
 		
 		String result = targ.getText();
