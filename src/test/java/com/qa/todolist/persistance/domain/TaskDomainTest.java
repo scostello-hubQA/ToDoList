@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class TaskDomainTest {
+class TaskDomainTest {
 	
 	private TaskDomain task;
 
 	
 	@Test
-	public void setterGetterTest() {
+	void setterGetterTest() {
 		task = new TaskDomain(1L, "Hoover", 2, "01-01-01", "Hoover downstairs", false, null);
 		
 		
