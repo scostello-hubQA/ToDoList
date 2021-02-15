@@ -63,7 +63,8 @@ this pulls the unit tests together and tests the behaviours between the individu
 Here you can right click on the controller integration tests and select run as JUnit
 
 ### Adding Coding Style Tests
-SonarQube  
+SonarQube - Used to make sure that best practice, bugs and security can be identified and over time elimated as mush as possible
+![](ProjectResources/Sonar_Qube_Static_Analysis.png)  
 
 ### User-Acceptance Testing  
 Here we have the use of Selenium to test the front end of the website - there will also extent reports auto-generated in the `ToDoList/target/TestReports` folder  
