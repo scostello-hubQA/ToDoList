@@ -45,8 +45,7 @@ A step by step guide using examples to show you how to get the development envir
 
 This project should be then imported into your IDE, if you wish to customise the database options, they can be found, `src/main/resources` in the application.properties files. 
 
-
-
+You can run the TomCat server from this IDE in SpringTools using the Boot Dashboard if you wish to  
 
 
 if this is successful you'll be able to follow the deployment steps later
@@ -61,19 +60,40 @@ this tests the indivdual methods of the program to make sure they are correct an
 
 ### Intergration Tests
 this pulls the unit tests together and tests the behaviours between the individual units 
+Here you can right click on the controller integration tests and select run as JUnit
 
 ### Adding Coding Style Tests
-SonarQube
+SonarQube  
+
+### User-Acceptance Testing  
+Here we have the use of Selenium to test the front end of the website - there will also extent reports auto-generated in the `ToDoList/target/TestReports` folder
 
 
 ## Deployment
 
+1. Open CLI in folder where the target file is located(Root of the ToDoList file)   
+2. The jar file is already generated for you for this snapshot  
+3. Run the command ```java -jar ToDoList/ToDoList-0.2.2-SNAPSHOT.jar```  
+
+
+
+
 
 ## Built With
-maven - dependecy management (add link)
+* [Maven](https://maven.apache.org/) - Dependency Management
 
 
 ## Authours
 
 
-## Acknowledgements
+## Acknowledgements  
+
+* Vinesh Ghela     -|
+                    |- Java, databases  
+* Aswene Sivaraj   -|
+
+* Nicholas Johnson - Github
+* Savannah Vaithilingam - JavaScript, HTML, CSS
+* Alan Davis - Springboot API
+
+
