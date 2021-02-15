@@ -67,7 +67,7 @@ SonarQube
 
 ### User-Acceptance Testing  
 Here we have the use of Selenium to test the front end of the website - there will also extent reports auto-generated in the `ToDoList/target/TestReports` folder  
-![](ProjectResources/Sonar_Qube_Static_Analysis.png)
+![](ProjectResources/Simple_Extent_Tests.png)
 
 
 ## Deployment
