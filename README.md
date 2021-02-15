@@ -93,6 +93,9 @@ Here we have the use of Selenium to test the front end of the website - there wi
 * [Vinesh Ghela](https://github.com/vineshghela) & [Aswene Sivaraj](https://github.com/Asivaraj-QA) - Java, databases
 * [Nicholas Johnson](https://github.com/nickrstewarttds) - Github
 * [Savannah Vaithilingam](https://github.com/savannahvaith) - JavaScript, HTML, CSS
-* [Alan Davis](https://github.com/MorickClive) - Springboot API
+* [Alan Davis](https://github.com/MorickClive) - Springboot API  
+
+##License
+[BootStrap](https://github.com/twbs/bootstrap/blob/v4.0.0/LICENSE)
 
 
