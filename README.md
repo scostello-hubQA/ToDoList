@@ -56,9 +56,9 @@ an explanation of how to run the automated tests for this system:
 ## Running the tests
 
 ### Unit Testing
-this tests the indivdual methods of the program to make sure they are correct and outputting what we expect 
+this tests the individual methods of the program to make sure they are correct and outputting what we expect 
 
-### Intergration Tests
+### Integration Tests
 this pulls the unit tests together and tests the behaviours between the individual units 
 Here you can right click on the controller integration tests and select run as JUnit
 
@@ -66,7 +66,8 @@ Here you can right click on the controller integration tests and select run as J
 SonarQube  
 
 ### User-Acceptance Testing  
-Here we have the use of Selenium to test the front end of the website - there will also extent reports auto-generated in the `ToDoList/target/TestReports` folder
+Here we have the use of Selenium to test the front end of the website - there will also extent reports auto-generated in the `ToDoList/target/TestReports` folder  
+![](ProjectResources/Sonar_Qube_Static_Analysis.png)
 
 
 ## Deployment
@@ -83,7 +84,7 @@ Here we have the use of Selenium to test the front end of the website - there wi
 * [Maven](https://maven.apache.org/) - Dependency Management
 
 
-## Authours
+## Authors
 
 
 ## Acknowledgements  
