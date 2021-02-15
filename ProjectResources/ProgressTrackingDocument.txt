@@ -1,0 +1,25 @@
+4th 
+-tasks complete
+5th
+- to do complete
+-some testing complete
+6th+7th
+-weekend
+8th
+- crud for task js (didnt finish update)
+9th
+- crud for to do js (again update not done)
+10th
+- HTML print all results from crud to screen
+-start on controller testing
+11th
+- selenium acceptatnce testing plus reports for task
+12th
+-update the project diagrams and read me 
+-finish selenium to do - (i've had to disable the delete test - explain in pres)
+13th+14th 
+-weekend
+15th
+- presentation work 
+16th
+- presentation day 
