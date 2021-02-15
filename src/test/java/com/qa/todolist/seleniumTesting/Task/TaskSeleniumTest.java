@@ -119,7 +119,7 @@ public class TaskSeleniumTest {
 		}else {
 			test.log(LogStatus.FAIL, "failed creation");
 		}
-		assertThat(result.contains(expected));
+		assertThat(result.contains(expected)).isTrue();
 		
 		
 	}
