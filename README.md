@@ -88,9 +88,9 @@ Here we have the use of Selenium to test the front end of the website - there wi
 
 ## Acknowledgements  
 
-* Vinesh Ghela     -|
+* Vinesh Ghela     -|  
                     |- Java, databases  
-* Aswene Sivaraj   -|
+* Aswene Sivaraj   -|  
 
 * Nicholas Johnson - Github
 * Savannah Vaithilingam - JavaScript, HTML, CSS
