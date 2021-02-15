@@ -15,10 +15,12 @@ The project document folder contains my risk assessment, PPT, and certain releva
 The below instructions will get you a version of the project up and running in a local environment for developing and testing purposes.  
 1. clone and fork  
 2. open in IDE as maven/spring prj  
-3. run the local server from the bootdashboard   
-4. load up postman use the URLS to test the functionality is working  
-5. you can also head to localhost:8080/h2-console to checkout the database
-6. removing the h2-console from the url will take you to the index.html for the to do list
+3. Open CLI in the folder where the .jar file is located
+4. Run the command `java -jar <filename>` and this should start up the tomcat server 
+5. head over to `localhost:8080.index` for the landing page   
+6. load up postman use the URLS to test the functionality is working  
+7. you can also head to localhost:8080/h2-console to checkout the database
+8. removing the h2-console from the url will take you to the index.html for the to do list
 
 
 
@@ -35,7 +37,13 @@ The below instructions will get you a version of the project up and running in a
 
 ### Installing
 
-A step by step guide using examples to show you how to get the development environment running,
+A step by step guide using examples to show you how to get the development environment running  
+**_Step One:_** In your IDE, once you have forked or cloned the repo down, import existing maven/spring project  
+**_Step Two:_** Browse the root directory and select your folder  
+**_Step Three:_** Import the folder to your IDE  
+
+
+This project should be then imported into your IDE, if you wish to customise the database options, they can be found, `src/main/resources` in the application.properties files. 
 
 
 
