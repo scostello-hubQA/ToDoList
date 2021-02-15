@@ -15,7 +15,7 @@
 	<name>ToDoList</name>
 	<description>To Do List Project</description>
 
-	<packaging>war</packaging>
+
 
 	<properties>
 		<java.version>11</java.version>
