@@ -7,14 +7,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 
 @SpringBootTest
-public class ToDoDomainTest {
+class ToDoDomainTest {
 	
 	private ToDoDomain toDo;
 	
 	
 	
 	@Test
-	public void setterGetterTest() {
+	void setterGetterTest() {
 		toDo = new ToDoDomain(1L, "Cleaning", null);
 		
 		Assertions.assertThat(toDo).isNotNull();
